@@ -1,4 +1,5 @@
-﻿using MauiApp1.Entities;
+﻿using MauiApp.DAL.Entities;
+using MauiApp1.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,5 +26,9 @@ internal class MauiAppDbContext : DbContext
         modelBuilder.Entity<UserEntity>().
            HasMany(i => i.Items).
            WithOne(i => i.User);
+
+        modelBuilder.Entity<ItemEntity>().
+            HasOne(i => i.User).
+            WithMany(i => i.Items);
     }
 }
